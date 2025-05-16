@@ -1,8 +1,15 @@
+package com.booksage;
+
+import java.io.IOException;
 import java.util.Scanner;
+
+import com.booksage.services.BookSearchService;
 
 public class Main {
     // Scanner object for user input
     private static final Scanner scanner = new Scanner(System.in);
+    // Book search service instance
+    private static final BookSearchService bookSearchService = new BookSearchService();
 
     public static void main(String[] args) {
         // Display welcome message
@@ -74,17 +81,35 @@ public class Main {
         }
     }
 
-    // Placeholder methods for search functionality
+    // Search methods
     private static void searchByGenre() {
-        System.out.println("\nSearching by genre... (Feature coming soon)");
+        System.out.print("\nEnter genre to search for: ");
+        String genre = scanner.nextLine().trim();
+        try {
+            bookSearchService.searchByGenre(genre);
+        } catch (IOException e) {
+            System.out.println("Error searching for books: " + e.getMessage());
+        }
     }
 
     private static void searchByAuthor() {
-        System.out.println("\nSearching by author... (Feature coming soon)");
+        System.out.print("\nEnter author name to search for: ");
+        String author = scanner.nextLine().trim();
+        try {
+            bookSearchService.searchByAuthor(author);
+        } catch (IOException e) {
+            System.out.println("Error searching for books: " + e.getMessage());
+        }
     }
 
     private static void searchByTitle() {
-        System.out.println("\nSearching by title... (Feature coming soon)");
+        System.out.print("\nEnter book title to search for: ");
+        String title = scanner.nextLine().trim();
+        try {
+            bookSearchService.searchByTitle(title);
+        } catch (IOException e) {
+            System.out.println("Error searching for books: " + e.getMessage());
+        }
     }
 }
 
